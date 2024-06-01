@@ -1,34 +1,35 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor {
-    public static int doctorNo = 0;
-    int id = 0;
-    private String name;
-    private String email;
+public class Doctor extends User {
+
     private String speciality;
+    private ArrayList<Appointment> appointments = new ArrayList<>();
 
-    Doctor() {
-        id = ++doctorNo;
-        System.out.println("Building Doctor object.");
-    }
-
-    Doctor(String name, String speciality) {
-        id = ++doctorNo;
-        this.name = name;
+    public Doctor(String name, String email, String speciality) {
+        super(name, email);
         this.speciality = speciality;
-        System.out.println("New Doctor's name is: " + this.name + " - Speciality: " + this.speciality);
+        System.out.println("New model.Doctor's name is: " + getName() + " - Speciality: " + this.speciality);
     }
 
     //Behaviors
     public void showName() {
-        System.out.println("Doctor's name is: " + name);
+        System.out.println("model.Doctor's name is: " + getName());
     }
     public void showId() {
-        System.out.println("Doctor's ID: " + id);
+        System.out.println("model.Doctor's ID: " + getId());
     }
 
-    private ArrayList<Appointment> appointments = new ArrayList<>();
+    //Getters and Setters
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
 
     public void addAppointment(Date date, String time) {
         this.appointments.add(new Doctor.Appointment(date, time));
@@ -37,8 +38,14 @@ public class Doctor {
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\r\nSpeciality: " + speciality + "\r\nAvailable Appointments: " + appointments.toString();
+    }
+
     //Adding a static nested class like below makes sense because of the business need.
-    //Only Doctor can create/determine what are the available appointments
+    //Only model.Doctor can create/determine what are the available appointments
     public static class Appointment {
         private int id;
         private Date date;
@@ -71,6 +78,11 @@ public class Doctor {
 
         public void setTime(String time) {
             this.time = time;
+        }
+
+        @Override
+        public String toString() {
+            return "\r\nDate: " + date + "\r\nTime: " + time;
         }
     }
 }

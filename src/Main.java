@@ -1,6 +1,8 @@
-import java.util.Date;
+import model.Day;
+import model.Doctor;
+import model.Patient;
 
-import static ui.UIMenu.*;
+import java.util.Date;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -9,34 +11,33 @@ public class Main {
 
         //showMenu();
 
-        Doctor myDoctor = new Doctor("Aaron D. Fuentevilla, MD", "Orthopedic Surgeon");
+        Doctor myDoctor = new Doctor("Aaron D. Fuentevilla, MD", "aaron@yahoo.com","Orthopedic Surgeon");
         myDoctor.showName();
         myDoctor.showId();;
         myDoctor.addAppointment(new Date(), "4pm");
         myDoctor.addAppointment(new Date(), "10am");
         myDoctor.addAppointment(new Date(), "1pm");
-        System.out.println(myDoctor.getAppointments());
+        System.out.println(myDoctor);
 
-        for (Doctor.Appointment appointment : myDoctor.getAppointments()) {
-            System.out.println(appointment.getDate() + " " + appointment.getTime());
-        }
+//        System.out.println(myDoctor.getAppointments());
+//        for (model.Doctor.Appointment appointment : myDoctor.getAppointments()) {
+//            System.out.println(appointment.getDate() + " " + appointment.getTime());
+//        }
+        System.out.println();
 
-        Doctor yourDoctor = new Doctor("Mari Bee", "Prosthodontist");
+        Doctor yourDoctor = new Doctor("Mari Bee", "mari@yahoo.com","Prosthodontist");
         yourDoctor.showName();
         yourDoctor.showId();
-
-        Doctor theDoctor = new Doctor();
-        System.out.println(theDoctor.id);
+        System.out.println();
 
         Patient patient = new Patient("Lola", "lolalaloca@hotmail.com");
         patient.setWeight(60.5);
         patient.setHeight(1.65);
+        patient.setPhoneNumber("1234567890");
+        System.out.println(patient.toString());
+        System.out.println();
 
-        patient.setPhoneNumber("1234567890 ");
-        System.out.println(patient.getWeight());
-        System.out.println(patient.getHeight());
-        System.out.println(patient.getPhoneNumber());
-
+        //Emum
         System.out.println(Day.TUESDAY);
         System.out.println(Day.TUESDAY.getSpanish());
     }
