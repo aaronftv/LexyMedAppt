@@ -1,4 +1,8 @@
 package ui;
+import model.Doctor;
+import model.Patient;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIMenu {
@@ -7,6 +11,9 @@ public class UIMenu {
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
     };
+    public static Doctor loggedDoctor;
+    public static Patient loggedPatient;
+
     public static void showMenu() {
         System.out.println();
         System.out.println("Welcome to My Appointments");
@@ -14,8 +21,8 @@ public class UIMenu {
 
         int response = 0;
         do {
-            System.out.println("1. model.Doctor");
-            System.out.println("2. model.Patient");
+            System.out.println("1. Log as Doctor");
+            System.out.println("2. Log as Patient");
             System.out.println("0. Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -23,11 +30,13 @@ public class UIMenu {
 
             switch (response){
                 case 1:
-                    System.out.println(":: model.Doctor Menu");
+                    System.out.println(":: Doctor Menu");
+                    response = 0;
+                    authUser(1);
                     break;
                 case 2:
                     response = 0;
-                    showPatientMenu();
+                    authUser(2);
                     break;
                 case 0:
                     System.out.println("Thank you for you visit");
@@ -38,32 +47,49 @@ public class UIMenu {
         } while (response != 0);
     }
 
-    static void showPatientMenu() {
-        int response = 0;
+    private static void authUser(int userType) {
+        //userType = 1: Doctor, 2: Patient
+        //Loading testing data
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        doctors.add(new Doctor("Ray Ftv", "ray@email.com"));
+        doctors.add(new Doctor("Christina B.", "tina@email.com"));
+        doctors.add(new Doctor("Douglas C.", "doug@email.com"));
+
+        ArrayList<Patient> patients = new ArrayList<>();
+        patients.add(new Patient("Aaron F.", "aaron@email.com"));
+        patients.add(new Patient("Andres G.", "andy@email.com"));
+        patients.add(new Patient("Martha A.", "mars@email.com"));
+
+        boolean emailFound = false;
         do {
-            System.out.println();
-            System.out.println("model.Patient Menu: ");
-            System.out.println("1. Book an appointment");
-            System.out.println("2. My appointments");
-            System.out.println("0. Return to Main menu");
-
+            System.out.println("Enter your email, format: a@a.com");
             Scanner sc = new Scanner(System.in);
-            response = Integer.parseInt(sc.nextLine());
-
-            switch (response){
-                case 1:
-                    System.out.println(":: Book an appointment");
-                    for (int i = 0; i < 3; i++) {
-                        System.out.println(i + 1 + ". " + MONTHS[i]);
+            String enteredEmail = sc.nextLine();
+            if (userType == 1) {
+                //Query simulation
+                for (Doctor d: doctors) {
+                    if(d.getEmail().equals(enteredEmail)) {
+                        emailFound = true;
+                        //Get logged user data
+                        loggedDoctor = d;
+                        UIDoctorMenu.showDoctorMenu();
                     }
-                    break;
-                case 2:
-                    System.out.println(":: My appointments");
-                    break;
-                case 0:
-                    showMenu();
-                    break;
+                }
             }
-        } while (response != 0);
+
+            if (userType == 2) {
+                for(Patient p: patients) {
+                    if(p.getEmail().equals(enteredEmail)) {
+                        emailFound = true;
+                        //Get logged user Data and show menu
+                        loggedPatient = p;
+                        UIPatientMenu.showPatientMenu();
+                    }
+                }
+            }
+
+            System.out.println("EMAIL NOT FOUND.");
+
+        }while(!emailFound);
     }
 }
