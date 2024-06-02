@@ -21,10 +21,10 @@ public class Doctor extends User {
 
     //Behaviors
     public void showName() {
-        System.out.println("model.Doctor's name is: " + getName());
+        System.out.println("Doctor's name is: " + getName());
     }
     public void showId() {
-        System.out.println("model.Doctor's ID: " + getId());
+        System.out.println("Doctor's ID: " + getId());
     }
 
     //Getters and Setters

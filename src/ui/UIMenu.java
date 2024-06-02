@@ -17,10 +17,11 @@ public class UIMenu {
     public static void showMenu() {
         System.out.println();
         System.out.println("Welcome to My Appointments");
-        System.out.println("Select desired option: ");
 
         int response = 0;
         do {
+            System.out.println("\r\n:: Main Menu ::");
+            System.out.println("Select desired option: ");
             System.out.println("1. Log as Doctor");
             System.out.println("2. Log as Patient");
             System.out.println("0. Exit");
@@ -29,26 +30,21 @@ public class UIMenu {
             response = Integer.parseInt(sc.nextLine());
 
             switch (response){
-                case 1:
-                    System.out.println(":: Doctor Menu");
-                    response = 0;
+                case 1 ->
                     authUser(1);
-                    break;
-                case 2:
-                    response = 0;
+                case 2 ->
                     authUser(2);
-                    break;
-                case 0:
-                    System.out.println("Thank you for you visit");
-                    break;
-                default:
+                case 0 ->
+                    System.out.println("Thank you for you visit!!");
+                default ->
                     System.out.println("Please select a correct answer");
             }
         } while (response != 0);
     }
 
     private static void authUser(int userType) {
-        //userType = 1: Doctor, 2: Patient
+        //userType: 1 Doctor, 2 Patient
+
         //Loading testing data
         ArrayList<Doctor> doctors = new ArrayList<>();
         doctors.add(new Doctor("Ray Ftv", "ray@email.com"));
@@ -87,9 +83,7 @@ public class UIMenu {
                     }
                 }
             }
-
-            System.out.println("EMAIL NOT FOUND.");
-
+            if(!emailFound) System.out.println("EMAIL NOT FOUND.");
         }while(!emailFound);
     }
 }

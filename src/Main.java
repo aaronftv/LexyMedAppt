@@ -6,11 +6,12 @@ import static ui.UIMenu.showMenu;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
         showMenu();
+    }
 
-        //Some Quick Informal Testing:
-        /*Doctor myDoctor = new Doctor("Aaron D. Fuentevilla, MD", "aaron@yahoo.com","Orthopedic Surgeon");
+    public static void quickCodeChecking(){
+        //Some Quick Informal Testing
+        Doctor myDoctor = new Doctor("Aaron D. Fuentevilla, MD", "aaron@yahoo.com","Orthopedic Surgeon");
         myDoctor.showName();
         myDoctor.showId();;
         myDoctor.addAvailableAppointment(new Date(), "4pm");
@@ -58,12 +59,12 @@ public class Main {
         specialSchedulable.schedule(new Date(), "11:11a");
         System.out.println();
 
-        ISchedulable schedulable = new AppointmentDoctor();
+        ISchedulable schedulable = new AppointmentDoctor(patient, myDoctor);
         schedulable.schedule(new Date(), "12:00pm");
         System.out.println();
 
         //Emum
         System.out.println(Day.TUESDAY);
-        System.out.println(Day.TUESDAY.getSpanish());*/
+        System.out.println(Day.TUESDAY.getSpanish());
     }
 }

@@ -12,7 +12,7 @@ public class UIPatientMenu {
         int response = 0;
         do {
             System.out.println();
-            System.out.println("Patient");
+            System.out.println(":: Patient Menu ::");
             System.out.println("Welcome " + UIMenu.loggedPatient.getName());
             System.out.println("1. Book an appointment");
             System.out.println("2. My appointments");
@@ -24,7 +24,6 @@ public class UIPatientMenu {
             switch (response) {
                 case 1 -> showBookAppointmentMenu();
                 case 2 -> showMyAppointments();
-                case 0 -> UIMenu.showMenu();
             }
 
         } while (response != 0);
@@ -82,7 +81,6 @@ public class UIPatientMenu {
                         selectedDoctor.getAvailableAppointments().get(apptIndex).getDate(),
                         selectedDoctor.getAvailableAppointments().get(apptIndex).getTime());
                 response = 0;
-                showPatientMenu();
             }
 
         } while (response != 0);
@@ -106,6 +104,8 @@ public class UIPatientMenu {
                 );
             }
             System.out.println("0. Return");
+            Scanner sc = new Scanner(System.in);
+            response = Integer.parseInt(sc.nextLine());
         } while (response != 0);
     }
 }

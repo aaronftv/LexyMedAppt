@@ -14,7 +14,7 @@ public class UIDoctorMenu {
 
         do {
             System.out.println();
-            System.out.println("Doctor");
+            System.out.println(":: Doctor Menu ::");
             System.out.println("Welcome " + UIMenu.loggedDoctor.getName());
             System.out.println("1. Add Available Appointment");
             System.out.println("2. My Scheduled Appointments");
@@ -24,9 +24,8 @@ public class UIDoctorMenu {
             response = Integer.parseInt(sc.nextLine());
 
             switch(response) {
-                case 1 -> showAddAvailableAppointmentsMenu();
+                case 1 -> { showAddAvailableAppointmentsMenu(); }
                 case 2 -> System.out.println();
-                case 0 -> UIMenu.showMenu();
             }
 
         } while(response != 0);
@@ -70,10 +69,7 @@ public class UIDoctorMenu {
                 checkDoctorAvailableAppointment(UIMenu.loggedDoctor);
                 System.out.println("The available appointment was added to the list!");
 
-            }else if(response == 0) {
-                showDoctorMenu();
             }
-
         } while (response != 0);
     }
 
